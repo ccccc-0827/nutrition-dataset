@@ -17,10 +17,13 @@ st.components.v1.html("""
 </script>
 """, height=0)
 # Step 1️⃣：觸發寫入 timestamp + 加總總瀏覽人次
-try:
-    requests.get("https://script.google.com/macros/s/AKfycbyTfUnvszYQl6KPd-mmwdmfPhiUZOFPP5lKBkR0wcYbgFO1Vnl1nnbclz18LyedNJqt9w/exec")
-except:
-    st.warning("⚠️ 無法更新瀏覽人次。")
+if 'view_tracked' not in st.session_state:
+    try:
+        requests.get("https://script.google.com/macros/s/AKfycbyTfUnvszYQl6KPd-mmwdmfPhiUZOFPP5lKBkR0wcYbgFO1Vnl1nnbclz18LyedNJqt9w/exec")
+        st.session_state.view_tracked = True
+    except:
+        st.warning("⚠️ 無法更新瀏覽人次。")
+
 
 # Step 2️⃣：讀取 Google Sheet 的總人次數值
 sheet_url = "https://docs.google.com/spreadsheets/d/11bVvfaXMUfCBzvPjsNYVwvfq4d64EH0HoK2Mj65dta8/gviz/tq?tqx=out:csv"
