@@ -18,7 +18,7 @@ st.components.v1.html("""
 """, height=0)
 # 📡 每次打開網頁就 ping Webhook ➜ 記錄訪問次數
 try:
-    requests.get("https://script.google.com/a/macros/tmu.edu.tw/s/AKfycbwmmWcGAl3n-4NXi68LJN28bIG8kb2_NBiXE-Csztr08QZPCj3veBHwHaN2vAZCLnidsg/exec")
+    requests.get("https://script.google.com/a/macros/tmu.edu.tw/s/AKfycbySB8So0WOeyUdeDJXFlfzCqE68DhYyv51HsEGK5wcEUy46OAdOvHk8B3CRzhdWvc5yJQ/exec")
 except:
     pass  # 不影響主功能
 
