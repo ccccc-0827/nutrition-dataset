@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import re
 from io import BytesIO
+import request
 
 # 🔍 插入 Google Analytics 追蹤碼
 st.components.v1.html("""
@@ -15,6 +16,12 @@ st.components.v1.html("""
   gtag('config', 'G-FSB7PV2XCJ');
 </script>
 """, height=0)
+# 📡 每次打開網頁就 ping Webhook ➜ 記錄訪問次數
+try:
+    requests.get("https://script.google.com/a/macros/tmu.edu.tw/s/AKfycbwmmWcGAl3n-4NXi68LJN28bIG8kb2_NBiXE-Csztr08QZPCj3veBHwHaN2vAZCLnidsg/exec")
+except:
+    pass  # 不影響主功能
+
 # 讀取 Excel 資料庫
 @st.cache_data
 
@@ -105,3 +112,12 @@ if st.button("📊 查詢營養素"):
         file_name="查詢結果.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
+# 📊 顯示總瀏覽次數（從 Google Sheet 抓資料）
+try:
+    sheet_url = "https://docs.google.com/spreadsheets/d/11bVvfaXMUfCBzvPjsNYVwvfq4d64EH0HoK2Mj65dta8/gviz/tq?tqx=out:csv"
+    data = pd.read_csv(sheet_url)
+    view_count = len(data)
+    st.markdown(f"<hr style='margin-top:30px;'>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align:center'>👁️ 本網站目前總瀏覽人次：<strong>{view_count}</strong> 次</div>", unsafe_allow_html=True)
+except:
+    st.markdown("<div style='text-align:center; color:gray;'>⚠️ 無法載入瀏覽次數</div>", unsafe_allow_html=True)
