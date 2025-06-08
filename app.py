@@ -118,6 +118,6 @@ try:
     data = pd.read_csv(sheet_url)
     view_count = len(data)
     st.markdown(f"<hr style='margin-top:30px;'>", unsafe_allow_html=True)
-    st.markdown(f"<div style='text-align:center'>👁️ 本網站目前總瀏覽人次：<strong>{view_count}</strong> 次</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align:center'> 網站總瀏覽人次：<strong>{view_count}</strong> 次</div>", unsafe_allow_html=True)
 except:
     st.markdown("<div style='text-align:center; color:gray;'>⚠️ 無法載入瀏覽次數</div>", unsafe_allow_html=True)
