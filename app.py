@@ -18,7 +18,7 @@ st.components.v1.html("""
 """, height=0)
 # Step 1️⃣：觸發寫入 timestamp + 加總總瀏覽人次
 try:
-    requests.get("https://script.google.com/a/macros/tmu.edu.tw/s/AKfycbxe70sl6OE3tT_kAKbRKaKjeTlu5lTiKvbV0Y5Vf-TvXiJOD450CS3jtIlHkTGqFFcXBA/exec")
+    requests.get("https://script.google.com/macros/s/AKfycbyTfUnvszYQl6KPd-mmwdmfPhiUZOFPP5lKBkR0wcYbgFO1Vnl1nnbclz18LyedNJqt9w/exec")
 except:
     st.warning("⚠️ 無法更新瀏覽人次。")
 
