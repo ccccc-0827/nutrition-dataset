@@ -16,11 +16,20 @@ st.components.v1.html("""
   gtag('config', 'G-FSB7PV2XCJ');
 </script>
 """, height=0)
-# 📡 每次打開網頁就 ping Webhook ➜ 記錄訪問次數
+# Step 1️⃣：觸發寫入 timestamp + 加總總瀏覽人次
 try:
-    requests.get("https://script.google.com/a/macros/tmu.edu.tw/s/AKfycbySB8So0WOeyUdeDJXFlfzCqE68DhYyv51HsEGK5wcEUy46OAdOvHk8B3CRzhdWvc5yJQ/exec")
+    requests.get("https://script.google.com/a/macros/tmu.edu.tw/s/AKfycbxe70sl6OE3tT_kAKbRKaKjeTlu5lTiKvbV0Y5Vf-TvXiJOD450CS3jtIlHkTGqFFcXBA/exec")
 except:
-    pass  # 不影響主功能
+    st.warning("⚠️ 無法更新瀏覽人次。")
+
+# Step 2️⃣：讀取 Google Sheet 的總人次數值
+sheet_url = "https://docs.google.com/spreadsheets/d/11bVvfaXMUfCBzvPjsNYVwvfq4d64EH0HoK2Mj65dta8/gviz/tq?tqx=out:csv"
+
+try:
+    df = pd.read_csv(sheet_url)
+    total_views = int(df.iloc[0, 1])  # B1 儲存格
+except:
+    total_views = "讀取失敗"
 
 # 讀取 Excel 資料庫
 @st.cache_data
