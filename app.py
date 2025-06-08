@@ -4,6 +4,17 @@ import pandas as pd
 import re
 from io import BytesIO
 
+# 🔍 插入 Google Analytics 追蹤碼
+st.components.v1.html("""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSB7PV2XCJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'G-FSB7PV2XCJ');
+</script>
+""", height=0)
 # 讀取 Excel 資料庫
 @st.cache_data
 
