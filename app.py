@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import re
 from io import BytesIO
-import request
+import requests
 
 # 🔍 插入 Google Analytics 追蹤碼
 st.components.v1.html("""
